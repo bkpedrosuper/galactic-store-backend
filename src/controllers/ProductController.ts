@@ -22,9 +22,9 @@ class ProductController {
     async show(req: Request, res: Response) {
         const productsRepository = getCustomRepository(ProductRepository);
 
-        const Products = await productsRepository.find();
+        const products = await productsRepository.find();
 
-        return res.status(200).json(Products);
+        return res.status(200).json(products);
     }
 }
 

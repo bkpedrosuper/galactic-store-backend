@@ -8,14 +8,17 @@ class PurchasedProduct {
     @PrimaryColumn()
     readonly id: string;
 
+    @Column()
+    product_id: string;
+
     @ManyToOne(() => Purchase, purchase => purchase.products)
     purchase_id: string;
 
     @Column()
-    product_id: string;
+    quantity: number;
 
     @Column()
-    quantity: number;
+    price: number;
 
     @Column()
     profitability: string;

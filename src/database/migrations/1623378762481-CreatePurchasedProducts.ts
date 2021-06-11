@@ -22,11 +22,14 @@ export class CreatePurchasedProducts1623378762481 implements MigrationInterface 
                     {
                         name: "quantity",
                         type: "number",
-                        isNullable: false,
                     },
                     {
                         name: "profitability",
                         type: "varchar",
+                    },
+                    {
+                        name: "price",
+                        type: "number",
                     },
                     {
                         name: "created_at",

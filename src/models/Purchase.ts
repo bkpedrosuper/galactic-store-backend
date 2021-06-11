@@ -11,6 +11,10 @@ class Purchase {
 
     @ManyToOne(() => Costumer )
     @JoinColumn({name: "costumer_id"})
+    costumer_id: string;
+
+    @ManyToOne(() => Costumer )
+    @JoinColumn({name: "costumer_id"})
     costumer: Costumer;
 
     @OneToMany(() => PurchasedProduct, purchasedProduct => purchasedProduct.purchase_id)
