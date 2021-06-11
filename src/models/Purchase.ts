@@ -9,15 +9,14 @@ class Purchase {
     @PrimaryColumn()
     readonly id: string;
 
-    @ManyToOne(() => Costumer )
-    @JoinColumn({name: "costumer_id"})
+    @Column()
     costumer_id: string;
 
     @ManyToOne(() => Costumer )
     @JoinColumn({name: "costumer_id"})
     costumer: Costumer;
 
-    @OneToMany(() => PurchasedProduct, purchasedProduct => purchasedProduct.purchase_id)
+    @OneToMany(() => PurchasedProduct, purchasedProduct => purchasedProduct.purchase)
     products: PurchasedProduct[];
 
     @CreateDateColumn()

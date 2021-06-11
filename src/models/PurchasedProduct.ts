@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 import { v4 as uuid } from 'uuid'
 import { Purchase } from "./Purchase";
 
-@Entity("purchased_product")
+@Entity("purchased_products")
 class PurchasedProduct {
 
     @PrimaryColumn()
@@ -11,8 +11,12 @@ class PurchasedProduct {
     @Column()
     product_id: string;
 
-    @ManyToOne(() => Purchase, purchase => purchase.products)
+    @Column()
     purchase_id: string;
+
+    @ManyToOne(() => Purchase, purchase => purchase.products)
+    @JoinColumn({name: "purchase_id"})
+    purchase: Purchase;
 
     @Column()
     quantity: number;

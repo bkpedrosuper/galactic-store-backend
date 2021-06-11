@@ -18,6 +18,7 @@ export class CreatePurchasedProducts1623378762481 implements MigrationInterface 
                     {
                         name: "purchase_id",
                         type: "uuid",
+                        isNullable: true,
                     },
                     {
                         name: "quantity",

@@ -6,19 +6,6 @@ import { PurchasedProductRepository } from '../repositories/PurchasedProductsRep
 
 class PurchaseController {
 
-    calculateProfitability(productOriginalCost, productBuyoutPrice) {
-        // ÓTIMA quando o preço usado no pedido é maior que o preço do produto
-        if(productBuyoutPrice > productOriginalCost) {
-            return 'otima';
-        }
-        // BOA quando o preço do item é no máximo 10% menor que o preço do produto
-        else if((productOriginalCost * 0.9) >= productBuyoutPrice) {
-            return 'boa';
-        }
-        // RUIM quando o preço do item é inferior ao preço do produto menos 10%.
-        return 'ruim';
-    }
-
     async create(req: Request, res: Response) {
         const { costumer_id, products_selected  } = req.body;
         const products = [];
@@ -32,16 +19,24 @@ class PurchaseController {
             });
         }
 
+        if(!products_selected.length) {
+            return res.status(400).json({
+                error: 'It must have at least a product to create a purchase'                
+            });
+        }
+
         for (const product_selected of products_selected) {
             const {product_id, quantity, price} = product_selected;
 
             const product = await productRepository.findOne({id: product_id});
 
+            // FAZER TESTE PARA OS MÚLTIPLOS AQUI
+
             const newProductPurchased = purchasedProductRepository.create({
                 product_id: product.id,
                 quantity,
                 price,
-                profitability: this.calculateProfitability(product.price, price)
+                profitability: purchasedProductRepository.calculateProfitability(product.price, price)
             });
 
             await purchasedProductRepository.save(newProductPurchased);
