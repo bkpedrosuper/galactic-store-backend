@@ -3,7 +3,7 @@ import { app } from '../app';
 import { getConnection } from 'typeorm';
 import createConnection from '../database'
 
-describe('Users', () => {
+describe('Costumers', () => {
 
     beforeAll(async () => {
         const connection = await createConnection();
@@ -17,8 +17,8 @@ describe('Users', () => {
     });
 
 
-    it('Should create a user correctly', async () => {
-        const response = await request(app).post('/users')
+    it('Should create a costumer correctly', async () => {
+        const response = await request(app).post('/costumers')
             .send({
                 name: "Han Solo",
                 email: "han_solo@goodguys.com",
@@ -28,10 +28,10 @@ describe('Users', () => {
         expect(response.status).toBe(201);
     });
 
-    it('Should not allow two users with the same email', async () => {
-        const response = await request(app).post('/users')
+    it('Should not allow two costumers with the same email', async () => {
+        const response = await request(app).post('/costumers')
             .send({
-                name: "Guest User",
+                name: "Guest Costumer",
                 email: "han_solo@goodguys.com",
                 imageSrc: "https://lumiere-a.akamaihd.net/v1/images/han-solo-main_a4c8ff79.jpeg?region=0%2C0%2C1920%2C1080&width=768"
             });
@@ -39,8 +39,8 @@ describe('Users', () => {
         expect(response.status).toBe(400);
     });
 
-    it("Should be able to get all users", async () => {
-        const response = await request(app).get('/users');
+    it("Should be able to get all costumers", async () => {
+        const response = await request(app).get('/costumers');
         const responseType = Object.prototype.toString.call(response.body);
 
         expect(responseType).toBe('[object Array]')

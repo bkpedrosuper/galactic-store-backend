@@ -1,12 +1,12 @@
 import { Router,Request, Response } from 'express'
-import { UserController } from './controllers/UserController';
+import { CostumerController } from './controllers/CostumerController';
 
 const router = Router();
 
-const userController = new UserController();
+const costumerController = new CostumerController();
 
-router.post('/users', userController.create);
-router.get('/users', userController.show);
+router.post('/costumers', costumerController.create);
+router.get('/costumers', costumerController.show);
 
 router.get("/", (request: Request, response: Response) => {
     return response.json({
