@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateCostumers1623369926443 implements MigrationInterface {
+export class CreatePurchases1623376971679 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "costumers",
+                name: "purchases",
                 columns: [
                     {
                         name: "id",
@@ -13,14 +13,23 @@ export class CreateCostumers1623369926443 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
+                        name: "costumer_id",
+                        type: "uuid",
+                    },
+                    {
                         name: "name",
                         type: "varchar",
                         isNullable: false,
                     },
                     {
-                        name: "email",
-                        type: "varchar",
+                        name: "price",
+                        type: "number",
                         isNullable: false,
+                    },
+                    {
+                        name: "multiple",
+                        type: "number",
+                        isNullable: true,
                     },
                     {
                         name: "imageSrc",
@@ -32,13 +41,23 @@ export class CreateCostumers1623369926443 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
+                ],
+                foreignKeys: [
+                    {
+                        name: 'FKCostumer',
+                        referencedTableName: 'costumers',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['costumer_id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE',
+                    },
                 ]
             })
-        )
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('costumers');
+        await queryRunner.dropTable('purchases');
     }
 
 }
