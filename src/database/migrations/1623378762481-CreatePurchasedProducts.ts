@@ -25,6 +25,10 @@ export class CreatePurchasedProducts1623378762481 implements MigrationInterface 
                         isNullable: false,
                     },
                     {
+                        name: "profitability",
+                        type: "varchar",
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"

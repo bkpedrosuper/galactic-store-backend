@@ -9,21 +9,12 @@ class Purchase {
     @PrimaryColumn()
     readonly id: string;
 
-    @Column()
-    name: string;
-
     @ManyToOne(() => Costumer )
     @JoinColumn({name: "costumer_id"})
     costumer: Costumer;
 
     @OneToMany(() => PurchasedProduct, purchasedProduct => purchasedProduct.purchase_id)
     products: PurchasedProduct[];
-
-    @Column()
-    profitability: string;
-
-    @Column()
-    multiple: number;
 
     @CreateDateColumn()
     created_at: Date;

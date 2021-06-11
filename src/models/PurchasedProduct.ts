@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid'
-import { Purchase } from "./Purchases";
+import { Purchase } from "./Purchase";
 
 @Entity("purchased_product")
 class PurchasedProduct {
@@ -16,6 +16,9 @@ class PurchasedProduct {
 
     @Column()
     quantity: number;
+
+    @Column()
+    profitability: string;
 
     @CreateDateColumn()
     created_at: Date;

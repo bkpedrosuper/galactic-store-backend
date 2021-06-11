@@ -17,26 +17,6 @@ export class CreatePurchases1623376971679 implements MigrationInterface {
                         type: "uuid",
                     },
                     {
-                        name: "name",
-                        type: "varchar",
-                        isNullable: false,
-                    },
-                    {
-                        name: "price",
-                        type: "number",
-                        isNullable: false,
-                    },
-                    {
-                        name: "multiple",
-                        type: "number",
-                        isNullable: true,
-                    },
-                    {
-                        name: "imageSrc",
-                        type: "varchar",
-                        isNullable: true,
-                    },
-                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"
