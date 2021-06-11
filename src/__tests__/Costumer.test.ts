@@ -29,6 +29,13 @@ describe('Costumers', () => {
     });
 
     it('Should not allow two costumers with the same email', async () => {
+        await request(app).post('/costumers')
+            .send({
+                name: "Guest Costumer",
+                email: "han_solo@goodguys.com",
+                imageSrc: "https://lumiere-a.akamaihd.net/v1/images/han-solo-main_a4c8ff79.jpeg?region=0%2C0%2C1920%2C1080&width=768"
+            });
+        
         const response = await request(app).post('/costumers')
             .send({
                 name: "Guest Costumer",
