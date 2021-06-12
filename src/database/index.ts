@@ -6,7 +6,7 @@ const database = async (): Promise<Connection> => {
 
     return createConnection(
         Object.assign(defaultOptions, {
-            database: process.env.NODE_ENV === 'test' ? './src/database/database.test.sqlite' : defaultOptions.database
+            database: process.env.NODE_ENV === 'test' ? './src/database/database.test.sqlite' : defaultOptions.database,
         })
     );
 }
