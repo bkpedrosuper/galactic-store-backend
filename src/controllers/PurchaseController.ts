@@ -31,6 +31,17 @@ class PurchaseController {
             const product = await productRepository.findOne({id: product_id});
 
             // FAZER TESTE PARA OS MÚLTIPLOS AQUI
+            if(product.multiple && quantity%product.multiple!=0) {
+                return res.status(401).json({
+                    error: `Cannot purchase ${quantity} of this product. Must be multiple of ${product.multiple}`
+                });
+            }
+
+            if(!quantity) {
+                return res.status(401).json({
+                    error: `Cannot purchase a product with empty quantity`
+                });
+            }
 
             const newProductPurchased = purchasedProductRepository.create({
                 product_id: product.id,

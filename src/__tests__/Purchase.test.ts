@@ -84,9 +84,9 @@ describe('Purchases', () => {
             });
 
         const products_selected = [
-            { product_id: product1.body.id, quantity: 123, price: 90 },
+            { product_id: product1.body.id, quantity: 122, price: 90 },
             { product_id: product2.body.id, quantity: 34, price: 100.01 },
-            { product_id: product3.body.id, quantity: 21, price: 89.99 },
+            { product_id: product3.body.id, quantity: 20, price: 89.99 },
         ];
 
         const response = await request(app).post('/purchase')
@@ -109,5 +109,34 @@ describe('Purchases', () => {
 
         expect(responseType).toBe('[object Array]')
         expect(response.status).toBe(200);
+    });
+
+    it("Shouldn't be able to purchase a product if the quantity is not a multiple", async () => {
+        const costumer = await request(app).post('/costumers')
+            .send({
+                name: "Darth Vader",
+                email: "anakim2001@goodguys.com",
+                imageSrc: "https://images-na.ssl-images-amazon.com/images/I/41i-0NH0q9L._SX328_BO1,204,203,200_.jpg"
+            });
+
+        const product = await request(app).post('/products')
+            .send({
+                name: "Death Star",
+                imageSrc: "https://a-static.mlcdn.com.br/618x463/star-wars-mission-fleet-nave-millenium-falcon-hasbro-e9343/magazinefuturistic/5010993742561/317d48bc618e8fde89dead257defedd3.jpg",
+                price: 100,
+                multiple: 2,
+            });
+
+        const products_selected = [{
+            product_id: product.body.id, quantity: 3, price: 90
+        }];
+
+        const response = await request(app).post('/purchase')
+            .send({
+                costumer_id: costumer.body.id,
+                products_selected,
+            });
+                
+        expect(response.status).toBe(401);
     });
 })
