@@ -33,7 +33,9 @@ class PurchaseController {
             // FAZER TESTE PARA OS MÚLTIPLOS AQUI
             if(product.multiple && quantity%product.multiple!=0) {
                 return res.status(401).json({
-                    error: `Cannot purchase ${quantity} of this product. Must be multiple of ${product.multiple}`
+                    error: `Cannot purchase ${quantity} samples of this product. Must be multiple of ${product.multiple}`,
+                    product_id: product.id,
+                    product_name: product.name,
                 });
             }
 
