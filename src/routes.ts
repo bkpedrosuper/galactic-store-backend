@@ -16,7 +16,8 @@ router.post('/products', productController.create);
 router.get('/products', productController.show);
 
 router.post('/purchase', purchaseController.create);
-router.get('/purchase', purchaseController.show);
+router.get('/purchases', purchaseController.show);
+router.get('/purchases/:id', purchaseController.getOne);
 
 router.get("/", (request: Request, response: Response) => {
     return response.json({

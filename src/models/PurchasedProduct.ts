@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid'
+import { Product } from "./Product";
 import { Purchase } from "./Purchase";
 
 @Entity("purchased_products")
@@ -9,10 +10,20 @@ class PurchasedProduct {
     readonly id: string;
 
     @Column()
+    name: string;
+
+    @Column()
+    imageSrc: string;
+
+    @Column()
     product_id: string;
 
     @Column()
     purchase_id: string;
+
+    @ManyToOne(() => Product)
+    @JoinColumn({name: "product_id"})
+    product: Product;
 
     @ManyToOne(() => Purchase, purchase => purchase.products)
     @JoinColumn({name: "purchase_id"})
@@ -23,6 +34,9 @@ class PurchasedProduct {
 
     @Column()
     price: number;
+
+    @Column()
+    originalPrice: number;
 
     @Column()
     profitability: string;

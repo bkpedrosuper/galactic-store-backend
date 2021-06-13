@@ -47,8 +47,11 @@ class PurchaseController {
 
             const newProductPurchased = purchasedProductRepository.create({
                 product_id: product.id,
-                quantity,
+                name: product.name,
+                imageSrc: product.imageSrc,
+                originalPrice: product.price,
                 price,
+                quantity,
                 profitability: purchasedProductRepository.calculateProfitability(product.price, price)
             });
 
@@ -74,6 +77,20 @@ class PurchaseController {
         });
 
         return res.status(200).json(allPurchases);
+    }
+
+    async getOne(req: Request, res: Response) {
+        const {id} = req.params;
+        const purchaseRepository = getCustomRepository(PurchaseRepository);
+        
+        const purchase = await purchaseRepository.findOne({
+            where: {
+                id,
+            },
+            relations: ['costumer', 'products']
+        });
+
+        return res.status(200).json(purchase);
     }
 }
 
