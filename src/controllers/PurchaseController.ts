@@ -69,7 +69,9 @@ class PurchaseController {
     async show(req: Request, res: Response) {
         const purchaseRepository = getCustomRepository(PurchaseRepository);
         
-        const allPurchases = await purchaseRepository.find();
+        const allPurchases = await purchaseRepository.find({
+            relations: ['costumer']
+        });
 
         return res.status(200).json(allPurchases);
     }
