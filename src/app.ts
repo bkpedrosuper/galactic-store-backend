@@ -7,7 +7,12 @@ createConnection();
 
 const app = express();
 
-app.use(cors());
+const origin = process.env.ENV === 'local' ? '*' : 'https://galactic-store-frontend.vercel.app';
+
+app.use(cors({
+    origin
+}));
+
 app.use(express.json());
 app.use(router);
 
