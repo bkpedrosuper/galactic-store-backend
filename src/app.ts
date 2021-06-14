@@ -7,7 +7,7 @@ createConnection();
 
 const app = express();
 
-const origin = process.env.ENV === 'local' ? '*' : 'https://galactic-store-frontend.vercel.app';
+const origin = process.env.NODE_ENV === 'development' ? '*' : 'https://galactic-store-frontend.vercel.app';
 
 app.use(cors({
     origin
