@@ -14,10 +14,12 @@ At first, you must update every dependencies this project might have.
 
 ```
 $ npm run install
+```
 
 Then, with NodeJS installed, you can run
 
 ```
 $ npm run dev
+```
 
 The app now can be acessed at #### http://localhost:3300
