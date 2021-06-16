@@ -33,11 +33,45 @@ baseURL: https://galactic-store-frontend.vercel.app
 ### Costumer
 #### route: baseURL/costumer
 
-##### Post
+#### model:
+```javascript
+@Entity("costumers")
+class Costumer {
+
+    @PrimaryColumn()
+    readonly id: string;
+
+    @Column()
+    name: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    imageSrc: string;
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuid();
+        }
+    }
+
+}
+```
+
+##### POST Example
 ```json
 {
 	"name": "Han Solo",
 	"email": "solohan@badguys.com",
 	"imageSrc": "https://conteudo.imguol.com.br/c/entretenimento/c9/2018/02/02/harrison-ford-como-han-solo-1517599837310_v2_1180x842.jpg"
 }
+```
+
+##### GET
+```json
+<no-body>
 ```
