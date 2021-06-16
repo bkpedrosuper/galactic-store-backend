@@ -23,3 +23,21 @@ $ npm run dev
 ```
 
 The app now can be acessed at #### http://localhost:3300
+
+
+
+## Documentation
+
+baseURL: https://galactic-store-frontend.vercel.app
+
+### Costumer
+#### route: baseURL/costumer
+
+##### Post
+```json
+{
+	"name": "Han Solo",
+	"email": "solohan@badguys.com",
+	"imageSrc": "https://conteudo.imguol.com.br/c/entretenimento/c9/2018/02/02/harrison-ford-como-han-solo-1517599837310_v2_1180x842.jpg"
+}
+```
