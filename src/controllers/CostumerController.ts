@@ -33,6 +33,15 @@ class CostumerController {
 
         return res.status(200).json(allCostumers);
     }
+
+    async getOne(req: Request, res: Response) {
+        const costumersRepository = getCustomRepository(CostumerRepository);
+        const {costumer_id} = req.params;
+
+        const costumer = await costumersRepository.findOne({id: costumer_id});
+
+        return res.status(200).json(costumer);
+    }
 }
 
 export { CostumerController };

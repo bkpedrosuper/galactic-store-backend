@@ -11,6 +11,7 @@ const purchaseController = new PurchaseController();
 
 router.post('/costumers', costumerController.create);
 router.get('/costumers', costumerController.show);
+router.get('/costumers/:costumer_id', costumerController.getOne);
 
 router.post('/products', productController.create);
 router.get('/products', productController.show);
